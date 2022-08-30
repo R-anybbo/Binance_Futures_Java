@@ -466,18 +466,22 @@ class WebsocketRequestImpl {
             if(jsonWrapper.getString("e").equals("ACCOUNT_UPDATE")) {
                 AccountUpdate accountUpdate = new AccountUpdate();
 
+                accountUpdate.setEvent(jsonWrapper.getJsonObject("a").getString("m"));
+
                 List<BalanceUpdate> balanceList = new LinkedList<>();
                 JsonWrapperArray dataArray = jsonWrapper.getJsonObject("a").getJsonArray("B");
                 dataArray.forEach(item -> {
                     BalanceUpdate balance = new BalanceUpdate();
                     balance.setAsset(item.getString("a"));
                     balance.setWalletBalance(item.getBigDecimal("wb"));
+                    balance.setBalanceAmount(item.getBigDecimal("cw"));
+                    balance.setChangeAmount(item.getBigDecimal("bc"));
                     balanceList.add(balance);
                 });
                 accountUpdate.setBalances(balanceList);
 
                 List<PositionUpdate> positionList = new LinkedList<>();
-                JsonWrapperArray datalist = jsonWrapper.getJsonObject("a").getJsonArray("B");
+                JsonWrapperArray datalist = jsonWrapper.getJsonObject("a").getJsonArray("P");
                 datalist.forEach(item -> {
                     PositionUpdate position = new PositionUpdate();
                     position.setSymbol(item.getString("s"));
@@ -485,8 +489,11 @@ class WebsocketRequestImpl {
                     position.setEntryPrice(item.getBigDecimal("ep"));
                     position.setPreFee(item.getBigDecimal("cr"));
                     position.setUnrealizedPnl(item.getBigDecimal("up"));
+                    position.setPositionSide(item.getString("mt"));
+                    position.setPositionMargin(item.getBigDecimal("iw"));
                     positionList.add(position);
                 });
+
                 accountUpdate.setPositions(positionList);
 
                 result.setAccountUpdate(accountUpdate); 

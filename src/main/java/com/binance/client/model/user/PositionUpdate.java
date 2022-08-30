@@ -16,6 +16,26 @@ public class PositionUpdate {
 
     private BigDecimal unrealizedPnl;
 
+    private String positionSide;
+
+    private BigDecimal positionMargin;
+
+    public String getPositionSide() {
+        return positionSide;
+    }
+
+    public void setPositionSide(String positionSide) {
+        this.positionSide = positionSide;
+    }
+
+    public BigDecimal getPositionMargin() {
+        return positionMargin;
+    }
+
+    public void setPositionMargin(BigDecimal positionMargin) {
+        this.positionMargin = positionMargin;
+    }
+
     public String getSymbol() {
         return symbol;
     }

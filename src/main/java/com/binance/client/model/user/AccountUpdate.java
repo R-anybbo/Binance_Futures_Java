@@ -7,9 +7,19 @@ import java.util.List;
 
 public class AccountUpdate {
 
+    private String event;
+
     private List<BalanceUpdate> balances;
 
     private List<PositionUpdate> positions;
+
+    public String getEvent() {
+        return event;
+    }
+
+    public void setEvent(String event) {
+        this.event = event;
+    }
 
     public List<BalanceUpdate> getBalances() {
         return balances;

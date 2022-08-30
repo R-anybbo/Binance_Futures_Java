@@ -11,6 +11,26 @@ public class BalanceUpdate {
 
     private BigDecimal walletBalance;
 
+    private BigDecimal balanceAmount;
+
+    private BigDecimal changeAmount;
+
+    public BigDecimal getChangeAmount() {
+        return changeAmount;
+    }
+
+    public void setChangeAmount(BigDecimal changeAmount) {
+        this.changeAmount = changeAmount;
+    }
+
+    public BigDecimal getBalanceAmount() {
+        return balanceAmount;
+    }
+
+    public void setBalanceAmount(BigDecimal balanceAmount) {
+        this.balanceAmount = balanceAmount;
+    }
+
     public String getAsset() {
         return asset;
     }
